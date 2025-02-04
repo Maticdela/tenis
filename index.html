@@ -92,14 +92,27 @@
                 <div class="grid md:grid-cols-2">
                     <div class="p-8 md:p-12">
                         <h2 class="text-3xl font-bold text-tennis-green mb-8">Pišite nam</h2>
-                        <form class="space-y-6">
-                            <input type="text" placeholder="Ime" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green">
-                            <input type="email" placeholder="E-pošta" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green">
-                            <textarea rows="5" placeholder="Sporočilo" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green"></textarea>
-                            <button class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
-                                Pošlji sporočilo
-                            </button>
-                        </form>
+                        <form 
+  action="https://formspree.io/f/your-form-id" 
+  method="POST"
+  class="space-y-6"
+>
+  <!-- Add hidden redirect field (optional) -->
+  <input type="hidden" name="_next" value="https://yourdomain.com/hvala.html">
+  
+  <!-- Honeypot field for spam prevention -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <!-- Your existing fields -->
+  <input type="text" placeholder="Ime" name="name" required>
+  <input type="email" placeholder="E-pošta" name="email" required>
+  <textarea rows="5" placeholder="Sporočilo" name="message" required></textarea>
+  
+  <!-- Submit button -->
+  <button type="submit" class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
+    Pošlji sporočilo
+  </button>
+</form>
                     </div>
                     <div class="bg-tennis-green text-white p-8 md:p-12">
                         <h2 class="text-3xl font-bold mb-8">Kontakt</h2>
