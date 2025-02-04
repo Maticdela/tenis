@@ -1,0 +1,287 @@
+/* Colors */
+:root {
+    --primary-color: #FF921C;
+    --secondary-color: #1f1f1f;
+    --text-color: white;
+}
+
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Style the header */
+header {
+    background-color: var(--primary-color);  /* Sets the background color of the header using a custom property defined elsewhere in the CSS (var(--primary-color)) */
+    color: var(--text-color);  /* Sets the text color inside the header using the text color variable (var(--text-color)) */
+    padding: 5px 20px;  /* Adds padding inside the header. 5px on top and bottom, 20px on left and right */
+    font-size: 0.9em;  /* Sets the font size to 0.9 of the parent element's font size, making the text slightly smaller */
+    height: 60px;  /* Sets a fixed height for the header to 60px, so it won’t grow or shrink based on content */
+    display: flex;  /* Makes the header a flex container, allowing you to use flexbox layout properties */
+    align-items: center;  /* Vertically centers the items within the header (e.g., logo and navigation) */
+    justify-content: space-between;  /* Distributes space evenly between items, pushing the logo to the left and navigation to the right */
+}
+
+/* Logo styling */
+.logo img {
+    max-height: 50px; /* Adjust logo size */
+    width: auto;
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    justify-content: flex-start; /* Center-align the navigation items */
+    align-items: center; /* Vertically center the items */
+}
+
+/* Navigation Link Styles */
+nav a {
+    color: var(--text-color); /* White text */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 20px; /* Add padding around text */
+    font-weight: bold; /* Make text bold */
+    font-size: 1.1em; /* Slightly larger text */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    display: block; /* Block-level display to fill the list item */
+}
+
+/* Hover effect for navigation links */
+nav a:hover {
+    background-color: var(--primary-color); /* Change background color */
+    color: var(--secondary-color); /* Change text color */
+}
+
+/* Optional: Add separator between list items */
+nav li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -10px; /* Position the separator on the right */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%; /* Height of the separator */
+    background-color: black; /* Light color for the separator */
+}
+
+/* Specific style for "Domov" link */
+.home header nav ul li:first-child a {
+    font-size: 1.3em; /* Increase font size of "Domov" */
+    font-weight: bold; /* Bold text for "Domov" */
+}
+
+/* Main content section */
+main {
+    padding: 0;
+    flex: 1;
+}
+
+/* Hero section with background image */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full screen height */
+}
+
+.hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the area */
+}
+
+.hero h1, .hero p {
+    color: var(--text-color); /* Ensure all heading and paragraph text is white */
+    position: absolute;
+    z-index: 1; /* Ensure text is above the background image */
+    margin: 0;
+    text-shadow: 1px 1px 2px black, -1px -1px 2px black; /* Subtle black outline for better readability */
+}
+
+.hero h1 {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%); /* Vertically center the text */
+    font-size: 3em; /* Adjust size as needed */
+}
+
+.hero p {
+    position: absolute;
+    top: 60%; /* Position it below the first text */
+    left: 20px;
+    font-size: 1.5em; /* Adjust size as needed */
+    font-weight: 300; /* Lighter weight for the paragraph */
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+/* Additional Styles for Responsive Design */
+@media screen and (max-width: 768px) {
+    header {
+        height: auto; /* Adjust header height for small screens */
+        padding: 10px 15px; /* Adjust padding */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack navigation links vertically */
+    }
+
+    nav a {
+        font-size: 1.2em; /* Slightly larger text on smaller screens */
+        padding: 10px; /* Adjust padding for touch devices */
+    }
+
+    .hero h1 {
+        font-size: 2.5em; /* Adjust font size for smaller screens */
+    }
+
+    .hero p {
+        font-size: 1.2em; /* Adjust font size for smaller screens */
+    }
+}
+
+/* Styling for smaller hero image */
+@media screen and (max-width: 480px) {
+    .hero img {
+        object-position: top; /* Align the hero image towards the top */
+    }
+}
+
+/* Style the navigation list items for spacing */
+nav li {
+    position: relative;
+}
+
+/* Remove borders for the last list item */
+nav li:last-child::after {
+    display: none;
+}
+
+/* Style for footer links if applicable */
+footer a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1em;
+    padding: 5px 10px;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+}
+
+body.kontakt {
+    color: white; /* Makes text white */
+  }
+  
+  body.kontakt a {
+    color: white; /* Ensures links are also white */
+    text-decoration: none; /* Optional: Removes underline */
+  }
+  
+  body.kontakt a:hover {
+    text-decoration: underline; /* Optional: Adds underline on hover */
+  }
+  body.storitve {
+    color: white; /* Makes all text white */
+  }
+  
+  body.storitve a {
+    color: white; /* Ensures links are white */
+    text-decoration: none; /* Optional: Removes underline */
+  }
+  
+  body.storitve a:hover {
+    text-decoration: underline; /* Optional: Adds underline on hover */
+  }
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 40px 0;
+    padding: 10px 20px;
+    text-shadow: 2px 2px 0px black, -2px -2px 0px black, 2px -2px 0px black, -2px 2px 0px black; /* Outline effect */
+    border: none; /* Ensures no border around the title */
+  }
+  
+  .service-image {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+  }
+  
+  .service-card:hover .service-image {
+    transform: scale(1.1); /* Zoom in the image when hovering over the card */
+  }
+  
+  /* Optional: You can also adjust the image opacity on hover */
+  .service-card:hover .service-image {
+    opacity: 0.9; /* Slightly reduce opacity on hover for a more subtle effect */
+  }
+  body.termini {
+    color: white;
+  }
+  
+  body.termini a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  body.termini a:hover {
+    text-decoration: underline;
+  }
+  
+  .calendar-container {
+    width: 80%;
+    margin: 40px auto;
+  }
+  
+  @media (max-width: 768px) {
+    .calendar-container {
+      width: 90%;
+    }
+  }
+  .reservation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure modal is above the calendar */
+  }
+  
+  .reservation-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: left;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
