@@ -1,9 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello World</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-  </body>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teniški trener Matic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Glava -->
+    <header class="glava">
+        <img src="logo.png" alt="Logo Teniški trener Matic" class="logo">
+        <nav class="meni">
+            <ul>
+                <li><a href="#domov">Domov</a></li>
+                <li><a href="#omeni">O meni</a></li>
+                <li><a href="#storitve">Storitve</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- O meni -->
+    <section id="omeni" class="sekcija">
+        <h2>O meni</h2>
+        <p>Začenjam s kariero teniškega trenerja in iščem potencialne stranke. Trenutno sem v procesu pridobitve licenc.</p>
+    </section>
+
+    <!-- Storitve -->
+    <section id="storitve" class="sekcija">
+        <h2>Storitve</h2>
+        <div class="storitve-container">
+            <div class="storitev">
+                <h3>Treningi</h3>
+                <p>Individualni ali skupinski teniški treningi.</p>
+                <button class="gumb">Več informacij</button>
+            </div>
+            <div class="storitev">
+                <h3>Sparing</h3>
+                <p>Priprava na tekmovanja s praktičnim sparingom.</p>
+                <button class="gumb">Več informacij</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="sekcija">
+        <h2>Kontakt</h2>
+        <div class="kontakt-container">
+            <form class="kontakt-obrazec">
+                <input type="text" placeholder="Ime" required>
+                <input type="email" placeholder="E-pošta" required>
+                <textarea placeholder="Sporočilo" rows="5" required></textarea>
+                <button type="submit" class="gumb">Pošlji</button>
+            </form>
+            <div class="kontakt-podatki">
+                <p>E-pošta: <a href="mailto:matic@tenis.si">matic@tenis.si</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Noga -->
+    <footer class="noga">
+        <p>© 2024 Matic Tenis</p>
+    </footer>
+</body>
 </html>
