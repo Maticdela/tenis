@@ -31,6 +31,13 @@
 </head>
 
 <body class="bg-gradient-to-br from-light-beige to-court-blue">
+    <!-- Social Proof Banner -->
+    <div class="bg-tennis-green text-white py-3 text-center text-sm">
+        <div class="container mx-auto px-6">
+            <span>🏆 10+ zadovoljnih strank | 🎾 5 let teniške izkušnje</span>
+        </div>
+    </div>
+
     <!-- Glava z gradientom -->
     <header class="bg-gradient-to-r from-tennis-green to-green-800 shadow-lg sticky top-0">
         <nav class="container mx-auto px-6 py-4">
@@ -85,6 +92,19 @@
         </div>
     </section>
 
+    <!-- Testimonial Slider -->
+    <section class="py-16 bg-court-blue">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-tennis-green text-center mb-8">Mnenja strank</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <p class="text-gray-600 italic mb-4">"Matic je izjemen trener! V kratkem času sem izboljšal svojo igro."</p>
+                    <p class="font-bold text-tennis-green">- Janez Novak</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Kontakt -->
     <section class="py-20 bg-tennis-green/10">
         <div class="container mx-auto px-6 max-w-4xl">
@@ -93,26 +113,27 @@
                     <div class="p-8 md:p-12">
                         <h2 class="text-3xl font-bold text-tennis-green mb-8">Pišite nam</h2>
                         <form 
-  action="https://formspree.io/f/xovjwgja" 
-  method="POST"
-  class="space-y-6"
->
-  <!-- Add hidden redirect field (optional) -->
-  <input type="hidden" name="_next" value="https://yourdomain.com/hvala.html">
-  
-  <!-- Honeypot field for spam prevention -->
-  <input type="text" name="_gotcha" style="display:none">
+                            action="https://formspree.io/f/your-form-id" 
+                            method="POST"
+                            class="space-y-6"
+                        >
+                            <!-- Hidden fields -->
+                            <input type="hidden" name="_next" value="https://yourusername.github.io/hvala.html">
+                            <input type="text" name="_gotcha" style="display:none">
 
-  <!-- Your existing fields -->
-  <input type="text" placeholder="Ime" name="name" required>
-  <input type="email" placeholder="E-pošta" name="email" required>
-  <textarea rows="5" placeholder="Sporočilo" name="message" required></textarea>
-  
-  <!-- Submit button -->
-  <button type="submit" class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
-    Pošlji sporočilo
-  </button>
-</form>
+                            <!-- Form fields -->
+                            <input type="text" placeholder="Ime" name="name" required 
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green">
+                            <input type="email" placeholder="E-pošta" name="email" required 
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green">
+                            <textarea rows="5" placeholder="Sporočilo" name="message" required 
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green"></textarea>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
+                                Pošlji sporočilo
+                            </button>
+                        </form>
                     </div>
                     <div class="bg-tennis-green text-white p-8 md:p-12">
                         <h2 class="text-3xl font-bold mb-8">Kontakt</h2>
