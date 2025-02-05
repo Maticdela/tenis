@@ -30,6 +30,85 @@
         }
     </style>
 </head>
+<!-- Add before </body> -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+<script>
+  // Mock data - Replace with real data later
+  let availability = {
+    "2024-06-15": ["09:00", "11:00", "14:00"],
+    "2024-06-16": ["10:00", "13:00"]
+  };
+
+  // Initialize calendar
+  document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek'
+      },
+      dateClick: function(info) {
+        const dateStr = info.dateStr;
+        if (availability[dateStr]) {
+          document.getElementById('selectedDate').value = dateStr;
+          showTimeSlots(availability[dateStr]);
+          document.getElementById('bookingModal').classList.remove('hidden');
+        }
+      },
+      events: Object.entries(availability).flatMap(([date, times]) => 
+        times.map(time => ({
+          title: 'Prosto',
+          start: `${date}T${time}:00`,
+          color: '#1B5E20'
+        }))
+      )
+    });
+    calendar.render();
+  });
+
+  // Show available time slots
+  function showTimeSlots(times) {
+    const container = document.getElementById('timeSlots');
+    container.innerHTML = times.map(time => `
+      <button 
+        type="button" 
+        onclick="bookTimeSlot('${time}')" 
+        class="bg-tennis-green text-white p-2 rounded hover:bg-green-700 transition"
+      >
+        ${time}
+      </button>
+    `).join('');
+  }
+
+  // Handle booking
+  function bookTimeSlot(time) {
+    const date = document.getElementById('selectedDate').value;
+    const formData = new FormData();
+    formData.append('date', date);
+    formData.append('time', time);
+    
+    // Send to Formspree (replace with your ID)
+    fetch('https://formspree.io/f/your-form-id', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Rezervacija uspešna!');
+        availability[date] = availability[date].filter(t => t !== time);
+        closeModal();
+        window.location.reload();
+      }
+    });
+  }
+
+  function closeModal() {
+    document.getElementById('bookingModal').classList.add('hidden');
+  }
+</script>
 
 <body class="bg-gradient-to-br from-light-beige to-court-blue">
     <!-- Social Proof Banner -->
@@ -94,6 +173,27 @@
             </div>
         </div>
     </section>
+    <!-- Add this in your Services section -->
+<section class="py-20 bg-court-blue">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center text-tennis-green mb-12">Rezervirajte termin</h2>
+    <div id="calendar" class="max-w-4xl mx-auto"></div>
+  </div>
+</section>
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+  <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+    <h3 class="text-2xl font-bold text-tennis-green mb-4">Izberite čas</h3>
+    <form id="bookingForm" class="space-y-4">
+      <input type="hidden" id="selectedDate" name="date">
+      <div id="timeSlots" class="grid grid-cols-2 gap-2"></div>
+      <button type="button" onclick="closeModal()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
+        Prekliči
+      </button>
+    </form>
+  </div>
+</div>
 
     <!-- Testimonial Slider -->
     <section class="py-16 bg-court-blue">
