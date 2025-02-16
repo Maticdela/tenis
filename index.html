@@ -150,28 +150,31 @@
 
     <!-- Storitve -->
     <section class="py-20 bg-white/90 backdrop-blur-sm">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center text-tennis-green mb-12">Storitve</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
-                    <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
-                    <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
-                    <p class="text-gray-600 mb-6">Individualni ali skupinski teniški treningi</p>
-                    <button class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-                        Več informacij →
-                    </button>
-                </div>
-
-                <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
-                    <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
-                    <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
-                    <p class="text-gray-600 mb-6">Praktični sparing za vse nivoe</p>
-                    <button class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-                        Več informacij →
-                    </button>
-                </div>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
+          <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
+          <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
+          <p class="text-gray-600 mb-6">Individualni ali skupinski teniški treningi</p>
+          <button 
+            onclick="openModal('treningiModal')" 
+            class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors"
+          >
+            Več informacij →
+          </button>
         </div>
+      
+        <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
+          <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
+          <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
+          <p class="text-gray-600 mb-6">Praktični sparing za vse nivoe</p>
+          <button 
+            onclick="openModal('sparingModal')" 
+            class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors"
+          >
+            Več informacij →
+          </button>
+        </div>
+      </div>
     </section>
     <!-- Add this in your Services section -->
 <section class="py-20 bg-court-blue">
@@ -261,5 +264,32 @@
             <p class="opacity-90">© 2024 Matic Tenis • Vse pravice pridržane</p>
         </div>
     </footer>
+    <!-- Treningi Modal -->
+<div id="treningiModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+  <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+    <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
+    <p class="text-gray-600 mb-6">
+      Ponujam individualne in skupinske teniške treninge, prilagojene vašim potrebam in stopnji znanja. 
+      Vsak trening je sestavljen iz tehničnih vaj, taktičnih vaj in igre na poligonu.
+    </p>
+    <button onclick="closeModal('treningiModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
+      Zapri
+    </button>
+  </div>
+</div>
+
+<!-- Sparing Modal -->
+<div id="sparingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+  <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+    <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
+    <p class="text-gray-600 mb-6">
+      Sparingi so namenjeni igralcem vseh stopenj, ki želijo izboljšati svojo igro v realnih pogojih. 
+      Ponujam tudi analizo igre in nasvete za izboljšanje.
+    </p>
+    <button onclick="closeModal('sparingModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
+      Zapri
+    </button>
+  </div>
+</div>
 </body>
 </html>
