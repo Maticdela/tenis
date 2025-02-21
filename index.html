@@ -1,36 +1,63 @@
 <!DOCTYPE html>
 <html lang="sl">
-  <link rel="icon" type="image/x-icon" href="images/favicon-60x60.png">
+<!-- ========================================== -->
+<!-- 1. HEAD SECTION: Metadata and Resources -->
+<!-- ========================================== -->
 <head>
+    <!-- Favicon for the website -->
+    <link rel="icon" type="image/x-icon" href="images/favicon-60x60.png">
+    
+    <!-- Character encoding and responsive viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title -->
     <title>Teniški trener Matic</title>
+    
+    <!-- Tailwind CSS (utility-first CSS framework) -->
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    
+    <!-- Custom CSS for animations -->
     <style>
+        /* Fade-in-up animation */
         @keyframes fade-in-up {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Apply the animation to elements with this class */
         .animate-fade-in-up {
             animation: fade-in-up 1s ease-out;
         }
     </style>
 </head>
+
+<!-- ========================================== -->
+<!-- 2. BODY SECTION: Main Content -->
+<!-- ========================================== -->
 <body class="bg-gradient-to-br from-light-beige to-court-blue">
-    <!-- Social Proof Banner -->
+    
+    <!-- ========================================== -->
+    <!-- 3. SOCIAL PROOF BANNER -->
+    <!-- ========================================== -->
     <div class="bg-tennis-green text-white py-3 text-center text-sm">
         <div class="container mx-auto px-6">
+            <!-- Social proof text -->
             <span>🏆 7+ zadovoljnih strank | 🎾 15 let igranja tenisa, licenco pridobivam v pomladi 2025</span>
         </div>
     </div>
 
-    <!-- Glava z gradientom -->
+    <!-- ========================================== -->
+    <!-- 4. HEADER: Navigation Bar -->
+    <!-- ========================================== -->
     <header class="bg-gradient-to-r from-tennis-green to-green-800 shadow-lg sticky top-0">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-              <a href="index.html">
-                <img src="images/logo.png" alt="Matic Tennis Coach Logo" class="h-16 w-auto brightness-125">
-            </a>
+                <!-- Logo -->
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Matic Tennis Coach Logo" class="h-16 w-auto brightness-125">
+                </a>
+                
+                <!-- Navigation Links (hidden on mobile, shown on desktop) -->
                 <div class="hidden md:flex space-x-8">
                     <a href="#domov" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Domov</a>
                     <a href="#omeni" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">O meni</a>
@@ -41,75 +68,93 @@
         </nav>
     </header>
 
-    <!-- Hero sekcija -->
+    <!-- ========================================== -->
+    <!-- 5. HERO SECTION: Introduction -->
+    <!-- ========================================== -->
     <section class="container mx-auto px-6 py-24 text-center">
+        <!-- Main heading with gradient text -->
         <h1 class="text-5xl md:text-6xl font-bold text-tennis-green mb-6 animate-fade-in-up">
             <span class="bg-clip-text text-transparent bg-gradient-to-r from-tennis-green to-green-600">
                 Teniški trener Matic
             </span>
         </h1>
+        
+        <!-- Subheading with background and shadow -->
         <p class="text-xl text-gray-700 max-w-2xl mx-auto bg-white/80 rounded-lg p-6 shadow-md">
             🎾 Začenjam s kariero teniškega trenerja in iščem potencialne stranke.<br>
             ✅ Licenca v pridobitvi | 🔝 Kakovostni treningi
         </p>
     </section>
 
-    <!-- Storitve -->
+    <!-- ========================================== -->
+    <!-- 6. SERVICES SECTION: Offerings -->
+    <!-- ========================================== -->
     <section class="py-20 bg-white/90 backdrop-blur-sm">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
-          <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
-          <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
-          <p class="text-gray-600 mb-6">Individualni ali skupinski teniški treningi</p>
-          <button 
-            onclick="openModal('treningiModal')" 
-            class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors"
-          >
-            Več informacij →
-          </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Training Service Card -->
+            <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
+                <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
+                <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
+                <p class="text-gray-600 mb-6">Individualni ali skupinski teniški treningi</p>
+                <button 
+                    onclick="openModal('treningiModal')" 
+                    class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors"
+                >
+                    Več informacij →
+                </button>
+            </div>
+            
+            <!-- Sparing Service Card -->
+            <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
+                <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
+                <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
+                <p class="text-gray-600 mb-6">Praktični sparing za vse nivoe</p>
+                <button 
+                    onclick="openModal('sparingModal')" 
+                    class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors"
+                >
+                    Več informacij →
+                </button>
+            </div>
         </div>
-      
-        <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
-          <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
-          <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
-          <p class="text-gray-600 mb-6">Praktični sparing za vse nivoe</p>
-          <button 
-            onclick="openModal('sparingModal')" 
-            class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors"
-          >
-            Več informacij →
-          </button>
-        </div>
-      </div>
     </section>
 
-    <!-- Calendar Section -->
+    <!-- ========================================== -->
+    <!-- 7. CALENDAR SECTION: Booking -->
+    <!-- ========================================== -->
     <section class="py-20 bg-court-blue">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center text-tennis-green mb-12">Rezervirajte termin</h2>
-        <div id="calendar" class="max-w-4xl mx-auto"></div>
-      </div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-tennis-green mb-12">Rezervirajte termin</h2>
+            <!-- Calendar container -->
+            <div id="calendar" class="max-w-4xl mx-auto"></div>
+        </div>
     </section>
 
-    <!-- Booking Modal -->
+    <!-- ========================================== -->
+    <!-- 8. BOOKING MODAL: Time Slot Selection -->
+    <!-- ========================================== -->
     <div id="bookingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-      <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-        <h3 class="text-2xl font-bold text-tennis-green mb-4">Izberite čas</h3>
-        <form id="bookingForm" class="space-y-4">
-          <input type="hidden" id="selectedDate" name="date">
-          <div id="timeSlots" class="grid grid-cols-2 gap-2"></div>
-          <button type="button" onclick="closeModal()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
-            Prekliči
-          </button>
-        </form>
-      </div>
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold text-tennis-green mb-4">Izberite čas</h3>
+            <form id="bookingForm" class="space-y-4">
+                <input type="hidden" id="selectedDate" name="date">
+                <!-- Time slots will be dynamically inserted here -->
+                <div id="timeSlots" class="grid grid-cols-2 gap-2"></div>
+                <button type="button" onclick="closeModal()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
+                    Prekliči
+                </button>
+            </form>
+        </div>
     </div>
 
-    <!-- Testimonial Slider -->
+    <!-- ========================================== -->
+    <!-- 9. TESTIMONIAL SECTION: Client Feedback -->
+    <!-- ========================================== -->
     <section class="py-16 bg-court-blue">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-tennis-green text-center mb-8">Mnenja strank</h2>
             <div class="max-w-3xl mx-auto">
+                <!-- Testimonial card -->
                 <div class="bg-white p-8 rounded-xl shadow-lg">
                     <p class="text-gray-600 italic mb-4">"Matic je izjemen trener! V kratkem času sem izboljšal svojo igro."</p>
                     <p class="font-bold text-tennis-green">- Janez Novak</p>
@@ -118,11 +163,14 @@
         </div>
     </section>
 
-    <!-- Kontakt -->
+    <!-- ========================================== -->
+    <!-- 10. CONTACT SECTION: Contact Form and Info -->
+    <!-- ========================================== -->
     <section class="py-20 bg-tennis-green/10">
         <div class="container mx-auto px-6 max-w-4xl">
             <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 <div class="grid md:grid-cols-2">
+                    <!-- Contact Form -->
                     <div class="p-8 md:p-12">
                         <h2 class="text-3xl font-bold text-tennis-green mb-8">Pišite nam</h2>
                         <form 
@@ -130,7 +178,7 @@
                             method="POST"
                             class="space-y-6"
                         >
-                            <!-- Hidden fields -->
+                            <!-- Hidden fields for Formspree -->
                             <input type="hidden" name="_next" value="https://yourusername.github.io/hvala.html">
                             <input type="text" name="_gotcha" style="display:none">
 
@@ -148,9 +196,12 @@
                             </button>
                         </form>
                     </div>
+                    
+                    <!-- Contact Info -->
                     <div class="bg-tennis-green text-white p-8 md:p-12">
                         <h2 class="text-3xl font-bold mb-8">Kontakt</h2>
                         <div class="flex items-start gap-4 mb-6">
+                            <!-- Email icon -->
                             <svg class="w-6 h-6 mt-1 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
@@ -165,40 +216,49 @@
         </div>
     </section>
 
-    <!-- Noga -->
+    <!-- ========================================== -->
+    <!-- 11. FOOTER: Copyright Information -->
+    <!-- ========================================== -->
     <footer class="bg-tennis-green text-white py-8">
         <div class="container mx-auto px-6 text-center">
             <p class="opacity-90">© 2024 Matic Tenis • Vse pravice pridržane</p>
         </div>
     </footer>
 
-    <!-- Treningi Modal -->
+    <!-- ========================================== -->
+    <!-- 12. MODALS: Additional Information -->
+    <!-- ========================================== -->
+    <!-- Training Modal -->
     <div id="treningiModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-      <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-        <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
-        <p class="text-gray-600 mb-6">
-          Ponujam individualne in skupinske teniške treninge, prilagojene vašim potrebam in stopnji znanja. 
-          Vsak trening je sestavljen iz tehničnih vaj, taktičnih vaj in igre na poligonu.
-        </p>
-        <button onclick="closeModal('treningiModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-          Zapri
-        </button>
-      </div>
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
+            <p class="text-gray-600 mb-6">
+                Ponujam individualne in skupinske teniške treninge, prilagojene vašim potrebam in stopnji znanja. 
+                Vsak trening je sestavljen iz tehničnih vaj, taktičnih vaj in igre na poligonu.
+            </p>
+            <button onclick="closeModal('treningiModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
+                Zapri
+            </button>
+        </div>
     </div>
 
     <!-- Sparing Modal -->
     <div id="sparingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-      <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-        <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
-        <p class="text-gray-600 mb-6">
-          Sparingi so namenjeni igralcem vseh stopenj, ki želijo izboljšati svojo igro v realnih pogojih. 
-          Ponujam tudi analizo igre in nasvete za izboljšanje.
-        </p>
-        <button onclick="closeModal('sparingModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-          Zapri
-        </button>
-      </div>
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
+            <p class="text-gray-600 mb-6">
+                Sparingi so namenjeni igralcem vseh stopenj, ki želijo izboljšati svojo igro v realnih pogojih. 
+                Ponujam tudi analizo igre in nasvete za izboljšanje.
+            </p>
+            <button onclick="closeModal('sparingModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
+                Zapri
+            </button>
+        </div>
     </div>
+
+    <!-- ========================================== -->
+    <!-- 13. EXTERNAL JAVASCRIPT -->
+    <!-- ========================================== -->
     <script src="script.js"></script>
 </body>
 </html>
