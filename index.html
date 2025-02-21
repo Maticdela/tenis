@@ -140,7 +140,7 @@
                 <input type="hidden" id="selectedDate" name="date">
                 <!-- Time slots will be dynamically inserted here -->
                 <div id="timeSlots" class="grid grid-cols-2 gap-2"></div>
-                <button type="button" onclick="closeModal()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
+                <button type="button" onclick="closeModal('bookingModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
                     Prekliči
                 </button>
             </form>
@@ -259,6 +259,9 @@
     <!-- ========================================== -->
     <!-- 13. EXTERNAL JAVASCRIPT -->
     <!-- ========================================== -->
+    <!-- FullCalendar Library -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+    <!-- Your Custom JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
