@@ -31,15 +31,8 @@
     </style>
 </head>
 <!-- Add before </body> -->
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+<!-- Update FullCalendar initialization -->
 <script>
-  // Mock data - Replace with real data later
-  let availability = {
-    "2024-06-15": ["09:00", "11:00", "14:00"],
-    "2024-06-16": ["10:00", "13:00"]
-  };
-
-  // Initialize calendar
   document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar');
     const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -49,24 +42,29 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek'
       },
-      dateClick: function(info) {
-        const dateStr = info.dateStr;
-        if (availability[dateStr]) {
-          document.getElementById('selectedDate').value = dateStr;
-          showTimeSlots(availability[dateStr]);
-          document.getElementById('bookingModal').classList.remove('hidden');
-        }
-      },
       events: Object.entries(availability).flatMap(([date, times]) => 
         times.map(time => ({
           title: 'Prosto',
           start: `${date}T${time}:00`,
-          color: '#1B5E20'
+          color: '#1B5E20',
+          allDay: false // Add this to show time-specific events
         }))
-      )
+      ),
+      eventClick: function(info) {
+        const date = info.event.startStr.split('T')[0];
+        const time = info.event.startStr.split('T')[1].slice(0,5);
+        document.getElementById('selectedDate').value = date;
+        showTimeSlots(availability[date]);
+        document.getElementById('bookingModal').classList.remove('hidden');
+      },
+      eventDidMount: function(info) {
+        info.el.querySelector('.fc-event-title').innerHTML = 
+          `<span class="font-bold">${info.timeText}</span> - ${info.event.title}`;
+      }
     });
     calendar.render();
   });
+</script>
 
   // Show available time slots
   function showTimeSlots(times) {
