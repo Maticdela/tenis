@@ -5,21 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teniški trener Matic</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'tennis-green': '#1B5E20',
-                        'accent-orange': '#FF6F00',
-                        'light-beige': '#FFF8E1',
-                        'court-blue': '#E3F2FD'
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <style>
         @keyframes fade-in-up {
             from { opacity: 0; transform: translateY(20px); }
@@ -30,89 +16,11 @@
         }
     </style>
 </head>
-<!-- Add before </body> -->
-<!-- Update FullCalendar initialization -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const calendarEl = document.getElementById('calendar');
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek'
-      },
-      events: Object.entries(availability).flatMap(([date, times]) => 
-        times.map(time => ({
-          title: 'Prosto',
-          start: `${date}T${time}:00`,
-          color: '#1B5E20',
-          allDay: false // Add this to show time-specific events
-        }))
-      ),
-      eventClick: function(info) {
-        const date = info.event.startStr.split('T')[0];
-        const time = info.event.startStr.split('T')[1].slice(0,5);
-        document.getElementById('selectedDate').value = date;
-        showTimeSlots(availability[date]);
-        document.getElementById('bookingModal').classList.remove('hidden');
-      },
-      eventDidMount: function(info) {
-        info.el.querySelector('.fc-event-title').innerHTML = 
-          `<span class="font-bold">${info.timeText}</span> - ${info.event.title}`;
-      }
-    });
-    calendar.render();
-  });
-</script>
-
-  // Show available time slots
-  function showTimeSlots(times) {
-    const container = document.getElementById('timeSlots');
-    container.innerHTML = times.map(time => `
-      <button 
-        type="button" 
-        onclick="bookTimeSlot('${time}')" 
-        class="bg-tennis-green text-white p-2 rounded hover:bg-green-700 transition"
-      >
-        ${time}
-      </button>
-    `).join('');
-  }
-
-  // Handle booking
-  function bookTimeSlot(time) {
-    const date = document.getElementById('selectedDate').value;
-    const formData = new FormData();
-    formData.append('date', date);
-    formData.append('time', time);
-    
-    // Send to Formspree (replace with your ID)
-    fetch('https://formspree.io/f/your-form-id', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-      if (response.ok) {
-        alert('Rezervacija uspešna!');
-        availability[date] = availability[date].filter(t => t !== time);
-        closeModal();
-        window.location.reload();
-      }
-    });
-  }
-
-  function closeModal() {
-    document.getElementById('bookingModal').classList.add('hidden');
-  }
-</script>
-
 <body class="bg-gradient-to-br from-light-beige to-court-blue">
     <!-- Social Proof Banner -->
     <div class="bg-tennis-green text-white py-3 text-center text-sm">
         <div class="container mx-auto px-6">
-            <span>🏆 10+ zadovoljnih strank | 🎾 5 let teniške izkušnje</span>
+            <span>🏆 7+ zadovoljnih strank | 🎾 15 let igranja tenisa, licenco pridobivam v pomladi 2025</span>
         </div>
     </div>
 
@@ -174,27 +82,28 @@
         </div>
       </div>
     </section>
-    <!-- Add this in your Services section -->
-<section class="py-20 bg-court-blue">
-  <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center text-tennis-green mb-12">Rezervirajte termin</h2>
-    <div id="calendar" class="max-w-4xl mx-auto"></div>
-  </div>
-</section>
 
-<!-- Booking Modal -->
-<div id="bookingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-  <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-    <h3 class="text-2xl font-bold text-tennis-green mb-4">Izberite čas</h3>
-    <form id="bookingForm" class="space-y-4">
-      <input type="hidden" id="selectedDate" name="date">
-      <div id="timeSlots" class="grid grid-cols-2 gap-2"></div>
-      <button type="button" onclick="closeModal()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
-        Prekliči
-      </button>
-    </form>
-  </div>
-</div>
+    <!-- Calendar Section -->
+    <section class="py-20 bg-court-blue">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center text-tennis-green mb-12">Rezervirajte termin</h2>
+        <div id="calendar" class="max-w-4xl mx-auto"></div>
+      </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+        <h3 class="text-2xl font-bold text-tennis-green mb-4">Izberite čas</h3>
+        <form id="bookingForm" class="space-y-4">
+          <input type="hidden" id="selectedDate" name="date">
+          <div id="timeSlots" class="grid grid-cols-2 gap-2"></div>
+          <button type="button" onclick="closeModal()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
+            Prekliči
+          </button>
+        </form>
+      </div>
+    </div>
 
     <!-- Testimonial Slider -->
     <section class="py-16 bg-court-blue">
@@ -262,32 +171,34 @@
             <p class="opacity-90">© 2024 Matic Tenis • Vse pravice pridržane</p>
         </div>
     </footer>
-    <!-- Treningi Modal -->
-<div id="treningiModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-  <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-    <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
-    <p class="text-gray-600 mb-6">
-      Ponujam individualne in skupinske teniške treninge, prilagojene vašim potrebam in stopnji znanja. 
-      Vsak trening je sestavljen iz tehničnih vaj, taktičnih vaj in igre na poligonu.
-    </p>
-    <button onclick="closeModal('treningiModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-      Zapri
-    </button>
-  </div>
-</div>
 
-<!-- Sparing Modal -->
-<div id="sparingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-  <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-    <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
-    <p class="text-gray-600 mb-6">
-      Sparingi so namenjeni igralcem vseh stopenj, ki želijo izboljšati svojo igro v realnih pogojih. 
-      Ponujam tudi analizo igre in nasvete za izboljšanje.
-    </p>
-    <button onclick="closeModal('sparingModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-      Zapri
-    </button>
-  </div>
-</div>
+    <!-- Treningi Modal -->
+    <div id="treningiModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+        <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
+        <p class="text-gray-600 mb-6">
+          Ponujam individualne in skupinske teniške treninge, prilagojene vašim potrebam in stopnji znanja. 
+          Vsak trening je sestavljen iz tehničnih vaj, taktičnih vaj in igre na poligonu.
+        </p>
+        <button onclick="closeModal('treningiModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
+          Zapri
+        </button>
+      </div>
+    </div>
+
+    <!-- Sparing Modal -->
+    <div id="sparingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+        <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
+        <p class="text-gray-600 mb-6">
+          Sparingi so namenjeni igralcem vseh stopenj, ki želijo izboljšati svojo igro v realnih pogojih. 
+          Ponujam tudi analizo igre in nasvete za izboljšanje.
+        </p>
+        <button onclick="closeModal('sparingModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
+          Zapri
+        </button>
+      </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
