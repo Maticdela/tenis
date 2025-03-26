@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <!-- Kopirajte isti head kot v index.html -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sparing | Matic Teniški trener</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon-60x60.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      'tennis-green': '#1B5E20',
+                      'accent-orange': '#FF6F00',
+                      'light-beige': '#FFF8E1',
+                      'court-blue': '#E3F2FD'
+                  }
+              }
+          }
+      }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-light-beige to-court-blue">
+  <!-- Social Proof Banner (enak kot v index.html) -->
+  <div class="bg-tennis-green text-white py-3 text-center text-sm">
+      <div class="container mx-auto px-6">
+          <span>🏆 Prilagojeni treningi glede na potrebe in želje  |  🎾 15+ let teniških izkušenj</span>
+      </div>
+  </div>
+
+  <!-- Glava z gradientom (enaka kot v index.html) -->
+  <header class="bg-gradient-to-r from-tennis-green to-green-800 shadow-lg sticky top-0">
+      <nav class="container mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <a href="index.html">
+              <img src="images/logo.png" alt="Matic Tennis Coach Logo" class="h-16 w-auto brightness-125">
+            </a>
+              <div class="hidden md:flex space-x-8">
+                  <a href="index.html" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Domov</a>
+                  <a href="index.html#omeni" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">O meni</a>
+                  <a href="index.html#storitve" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Storitve</a>
+                  <a href="index.html#kontakt" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Kontakt</a>
+              </div>
+          </div>
+      </nav>
+  </header>
+
+  <!-- Hero sekcija za sparing -->
+  <section class="container mx-auto px-6 py-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-tennis-green mb-6">
+          Teniški sparing
+      </h1>
+      <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+          Izboljšajte svojo igro z izkušenim sparing partnerjem
+      </p>
+  </section>
+
+  <!-- Podrobnosti o sparingih -->
+  <section class="py-12 bg-white/90 backdrop-blur-sm">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Standardni sparing -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-tennis-green mb-4">Standardni sparing</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-accent-orange mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Igra v realnih pogojih</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-accent-orange mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Prilagojeno vaši stopnji igre</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-accent-orange mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Trajanje: 60-90 minut</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-accent-orange mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Cena: 25€/igro</span>
+            </li>
+          </ul>
+          <a href="#calendar" class="mt-6 inline-block bg-accent-orange hover:bg-orange-600 text-white px-6 py-3 rounded-full font-medium transition-colors">
+            Rezervirajte termin
+          </a>
+        </div>
+        
+        <!-- Sparing z analizo -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing z analizo</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-accent-orange mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Video posnetek igre</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-accent-orange mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Podrobna analiza vaših slabosti in prednosti</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-accent-orange mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Trajanje: 90-120 minut</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-accent-orange mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Cena: 40€</span>
+            </li>
+          </ul>
+          <a href="#calendar" class="mt-6 inline-block bg-accent-orange hover:bg-orange-600 text-white px-6 py-3 rounded-full font-medium transition-colors">
+            Rezervirajte termin
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimoniali -->
+  <section class="py-12 bg-court-blue">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <h2 class="text-3xl font-bold text-tennis-green text-center mb-8">Kaj pravijo igralci o mojem sparingu</h2>
+      <div class="space-y-6">
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <p class="text-gray-600 italic mb-4">"Hvala Maticu za odlične sparinge. Njegova sposobnost prilagajanja moji stopnji igre je izjemna."</p>
+          <p class="font-bold text-tennis-green">- Ana Kovač</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <p class="text-gray-600 italic mb-4">"Analiza po sparingu mi je pomagala razumeti, kje delam največje napake."</p>
+          <p class="font-bold text-tennis-green">- Marko Žnidar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Klic k akciji -->
+  <section class="py-16 bg-tennis-green text-white text-center">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-6">Pripravljeni na kvaliteten sparing?</h2>
+      <a href="#calendar" class="inline-block bg-accent-orange hover:bg-orange-600 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors">
+        Rezervirajte termin zdaj
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer (enak kot v index.html) -->
+  <footer class="bg-tennis-green text-white py-8">
+      <div class="container mx-auto px-6 text-center">
+          <p class="opacity-90">© 2024 Matic Tenis • Vse pravice pridržane</p>
+      </div>
+  </footer>
+
+  <!-- Calendar Section (kopirajte iz index.html) -->
+  <section id="calendar" class="py-20 bg-court-blue">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-tennis-green mb-12">Rezervirajte termin</h2>
+      <div id="calendar" class="max-w-4xl mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- Booking Modal (kopirajte iz index.html) -->
+  <div id="bookingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+    <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+      <h3 class="text-2xl font-bold text-tennis-green mb-4">Izberite čas</h3>
+      <form id="bookingForm" class="space-y-4">
+        <input type="hidden" id="selectedDate" name="date">
+        <div id="timeSlots" class="grid grid-cols-2 gap-2"></div>
+        <button type="button" onclick="closeModal('bookingModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
+          Prekliči
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Skripte (kopirajte iz index.html) -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
+  <script>
+    // Kopirajte JavaScript kodo iz index.html
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarEl = document.getElementById('calendar');
+      if (!calendarEl) return;
+      
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek'
+        },
+        dateClick: function(info) {
+          const selectedDateInput = document.getElementById('selectedDate');
+          if (!selectedDateInput) return;
+          
+          if (availability[info.dateStr]) {
+            selectedDateInput.value = info.dateStr;
+            showTimeSlots(availability[info.dateStr]);
+            document.getElementById('bookingModal').classList.remove('hidden');
+          } else {
+            alert("Ni prostih terminov na ta dan.");
+          }
+        },
+        events: Object.entries(availability).flatMap(([date, times]) => 
+          times.map(time => ({
+            title: 'Prosto',
+            start: `${date}T${time}:00`,
+            color: '#1B5E20'
+          }))
+        )
+      });
+      calendar.render();
+    });
+
+    let availability = {
+      "2024-06-15": ["09:00", "11:00", "14:00"],
+      "2024-06-16": ["10:00", "13:00"]
+    };
+
+    function showTimeSlots(times) {
+      const container = document.getElementById('timeSlots');
+      if (!container) return;
+      container.innerHTML = times.map(time => `
+        <button 
+          type="button" 
+          onclick="bookTimeSlot('${time}')" 
+          class="bg-tennis-green text-white p-2 rounded hover:bg-green-700 transition"
+        >
+          ${time}
+        </button>
+      `).join('');
+    }
+
+    function bookTimeSlot(time) {
+      const date = document.getElementById('selectedDate').value;
+      const formData = new FormData();
+      formData.append('date', date);
+      formData.append('time', time);
+      formData.append('service', 'sparing');
+
+      fetch('https://formspree.io/f/your-form-id', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('Rezervacija uspešna!');
+          availability[date] = availability[date].filter(t => t !== time);
+          closeModal('bookingModal');
+          window.location.reload();
+        } else {
+          alert('Prišlo je do napake pri rezervaciji.');
+        }
+      })
+      .catch(error => {
+        console.error("Error booking time slot:", error);
+        alert('Prišlo je do napake. Poskusite znova.');
+      });
+    }
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
