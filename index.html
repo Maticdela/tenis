@@ -29,10 +29,9 @@
           animation: fade-in-up 1s ease-out;
       }
       a {
-  position: relative;
-  z-index: 10; /* Ensures the button is clickable */
-}
-
+          position: relative;
+          z-index: 10;
+      }
   </style>
 </head>
 <body class="bg-gradient-to-br from-light-beige to-court-blue">
@@ -81,9 +80,9 @@
         <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
         <p class="text-gray-600 mb-6">Individualni ali skupinski teniški treningi</p>
         <a href="/tenis/trening.html" 
-   class="inline-block bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-   Več informacij →
-</a>
+           class="inline-block bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
+           Več informacij →
+        </a>
       </div>
     
       <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
@@ -91,34 +90,36 @@
         <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
         <p class="text-gray-600 mb-6">Praktični sparing za vse nivoje</p>
         <a href="/tenis/sparing.html" 
-   class="inline-block bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-   Več informacij →
-</a>
+           class="inline-block bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
+           Več informacij →
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Rezervacija termina (Calendar) -->
+  <!-- Rezervacija termina (Google Calendar) -->
   <section class="py-20 bg-court-blue">
     <div class="container mx-auto px-6">
       <h2 class="text-4xl font-bold text-center text-tennis-green mb-12">Rezervirajte termin</h2>
-      <div id="calendar" class="max-w-4xl mx-auto"></div>
+      <div class="max-w-4xl mx-auto">
+        <iframe 
+          src="https://calendar.google.com/calendar/embed?src=matic.drempeticsp%40gmail.com&ctz=Europe%2FBelgrade" 
+          style="border: 0; width: 100%; height: 650px;" 
+          frameborder="0"
+          class="rounded-lg shadow-lg bg-white"
+        ></iframe>
+        
+        <div class="mt-8 text-center">
+          <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1..." 
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-block bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors duration-300">
+             🎾 Odprite rezervacije v novem zavihku
+          </a>
+        </div>
+      </div>
     </div>
   </section>
-
-  <!-- Booking Modal -->
-  <div id="bookingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-    <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-      <h3 class="text-2xl font-bold text-tennis-green mb-4">Izberite čas</h3>
-      <form id="bookingForm" class="space-y-4">
-        <input type="hidden" id="selectedDate" name="date">
-        <div id="timeSlots" class="grid grid-cols-2 gap-2"></div>
-        <button type="button" onclick="closeModal('bookingModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">
-          Prekliči
-        </button>
-      </form>
-    </div>
-  </div>
 
   <!-- Testimonial Slider -->
   <section class="py-16 bg-court-blue">
@@ -145,11 +146,9 @@
                           method="POST"
                           class="space-y-6"
                       >
-                          <!-- Hidden fields -->
                           <input type="hidden" name="_next" value="https://yourusername.github.io/hvala.html">
                           <input type="text" name="_gotcha" style="display:none">
 
-                          <!-- Form fields -->
                           <input type="text" placeholder="Ime" name="name" required 
                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green">
                           <input type="email" placeholder="E-pošta" name="email" required 
@@ -157,7 +156,6 @@
                           <textarea rows="5" placeholder="Sporočilo" name="message" required 
                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green"></textarea>
 
-                          <!-- Submit button -->
                           <button type="submit" class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
                               Pošlji sporočilo
                           </button>
@@ -216,112 +214,8 @@
     </div>
   </div>
 
-  <!-- Scripts: FullCalendar & Custom Code -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
   <script>
-    // Mock data - Replace with real data later
-    let availability = {
-      "2024-06-15": ["09:00", "11:00", "14:00"],
-      "2024-06-16": ["10:00", "13:00"]
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-      // Calendar initialization
-      const calendarEl = document.getElementById('calendar');
-      if (!calendarEl) {
-        console.error('Calendar element not found!');
-        return;
-      }
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek'
-        },
-        dateClick: function(info) {
-          console.log("Clicked date:", info.dateStr);
-          const selectedDateInput = document.getElementById('selectedDate');
-          if (!selectedDateInput) {
-            console.error("SelectedDate input not found.");
-            return;
-          }
-          if (availability[info.dateStr]) {
-            selectedDateInput.value = info.dateStr;
-            showTimeSlots(availability[info.dateStr]);
-            document.getElementById('bookingModal').classList.remove('hidden');
-          } else {
-            alert("Ni prostih terminov na ta dan.");
-          }
-        },
-        events: Object.entries(availability).flatMap(([date, times]) => 
-          times.map(time => ({
-            title: 'Prosto',
-            start: `${date}T${time}:00`,
-            color: '#1B5E20'
-          }))
-        )
-      });
-      calendar.render();
-    });
-
-    // Show available time slots in booking modal
-    function showTimeSlots(times) {
-      const container = document.getElementById('timeSlots');
-      if (!container) {
-        console.error("Time slots container not found.");
-        return;
-      }
-      container.innerHTML = times.map(time => `
-        <button 
-          type="button" 
-          onclick="bookTimeSlot('${time}')" 
-          class="bg-tennis-green text-white p-2 rounded hover:bg-green-700 transition"
-        >
-          ${time}
-        </button>
-      `).join('');
-    }
-
-    // Handle booking a time slot
-    function bookTimeSlot(time) {
-      const date = document.getElementById('selectedDate').value;
-      const formData = new FormData();
-      formData.append('date', date);
-      formData.append('time', time);
-
-      // Replace with your actual Formspree endpoint
-      fetch('https://formspree.io/f/your-form-id', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => {
-        if (response.ok) {
-          alert('Rezervacija uspešna!');
-          // Remove the booked time slot from availability
-          availability[date] = availability[date].filter(t => t !== time);
-          closeModal('bookingModal');
-          window.location.reload();
-        } else {
-          alert('Prišlo je do napake pri rezervaciji.');
-        }
-      })
-      .catch(error => {
-        console.error("Error booking time slot:", error);
-        alert('Prišlo je do napake. Poskusite znova.');
-      });
-    }
-
-    // Function to open a modal by id
-    function openModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.remove('hidden');
-      }
-    }
-
-    // Function to close a modal by id
+    // Funkcije za modal (ohranjene za druge modale)
     function closeModal(modalId) {
       const modal = document.getElementById(modalId);
       if (modal) {
@@ -329,6 +223,5 @@
       }
     }
   </script>
-
- </body>
+</body>
 </html>
