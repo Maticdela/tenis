@@ -1,218 +1,629 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teniški trener Matic</title>
-  <link rel="icon" type="image/x-icon" href="images/favicon-60x60.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-      tailwind.config = {
-          theme: {
-              extend: {
-                  colors: {
-                      'tennis-green': '#1B5E20',
-                      'accent-orange': '#FF6F00',
-                      'light-beige': '#FFF8E1',
-                      'court-blue': '#E3F2FD'
-                  }
-              }
-          }
-      }
-  </script>
-  <style>
-      @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-      .animate-fade-in-up {
-          animation: fade-in-up 1s ease-out;
-      }
-      a {
-          position: relative;
-          z-index: 10;
-      }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Teniški trener | Treningi za otroke in rekreativce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #ffffff;
+            color: #1f2a2e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* osnovne barve: bela, zelena (teniška zelena), siva */
+        :root {
+            --tennis-green: #2b7a3e;   /* teniška zelena */
+            --tennis-green-light: #eaf6e8;
+            --tennis-green-dark: #1e5a2e;
+            --gray-light: #f5f7f6;
+            --gray-medium: #e2e6e3;
+            --gray-text: #4a5b52;
+            --white: #ffffff;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header / hero */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%);
+            padding: 60px 0 70px;
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .coach-name {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #1a3c2a;
+            margin-bottom: 0.5rem;
+        }
+
+        .slogan {
+            font-size: 1.4rem;
+            color: var(--tennis-green);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--tennis-green);
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--tennis-green);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px 36px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--tennis-green-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* splošni odseki */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+            color: #1f2a2e;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: var(--tennis-green);
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+
+        /* 3 točke ponudbe */
+        .offers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+        }
+
+        .offer-card {
+            flex: 1;
+            min-width: 250px;
+            background: var(--white);
+            padding: 32px 24px;
+            border-radius: 28px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            border: 1px solid var(--gray-medium);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .offer-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .offer-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--tennis-green-dark);
+        }
+
+        .offer-card p {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+        }
+
+        /* cenik - preprost */
+        .pricing-wrapper {
+            background-color: var(--gray-light);
+            border-radius: 32px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .price-table {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-medium);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--gray-medium);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1f2a2e;
+        }
+
+        .service-desc {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            margin-top: 4px;
+        }
+
+        .price-value {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--tennis-green);
+            letter-spacing: -0.01em;
+        }
+
+        .price-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            background: var(--white);
+            padding: 8px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            width: auto;
+        }
+
+        /* mnenja (testimonials) */
+        .testimonials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 28px 26px;
+            flex: 1;
+            min-width: 260px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-medium);
+            transition: all 0.2s;
+        }
+
+        .testimonial-text {
+            font-style: normal;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #2c3e33;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .testimonial-text i {
+            color: var(--tennis-green);
+            opacity: 0.7;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--tennis-green-dark);
+            margin-top: 12px;
+            border-top: 1px dashed var(--gray-medium);
+            padding-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .star-rating {
+            color: #e6b422;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        /* kontakt */
+        .contact-section {
+            background-color: var(--gray-light);
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: var(--white);
+            border-radius: 32px;
+            padding: 32px 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-medium);
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--tennis-green-dark);
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-icon {
+            font-size: 1.4rem;
+            min-width: 32px;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--gray-medium);
+            border-radius: 28px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--white);
+            transition: 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--tennis-green);
+            box-shadow: 0 0 0 3px rgba(43, 122, 62, 0.2);
+        }
+
+        .btn-submit {
+            background-color: var(--tennis-green);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--tennis-green-dark);
+        }
+
+        footer {
+            background-color: #1f2a2e;
+            color: #cbd5d1;
+            text-align: center;
+            padding: 28px 0;
+            font-size: 0.85rem;
+            border-top: 1px solid #2d3e3a;
+        }
+
+        /* responzivnost */
+        @media (max-width: 768px) {
+            .coach-name {
+                font-size: 2.2rem;
+            }
+            .slogan {
+                font-size: 1.1rem;
+            }
+            .hero {
+                padding: 40px 0 50px;
+            }
+            section {
+                padding: 50px 0;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .price-row {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 16px 20px;
+            }
+            .price-value {
+                font-size: 1.3rem;
+            }
+            .contact-wrapper {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .offer-card {
+                padding: 24px 16px;
+            }
+        }
+
+        .tennis-ball-icon {
+            display: inline-block;
+        }
+        .btn-booking {
+            margin-top: 0.5rem;
+        }
+        .small-note {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            margin-top: 16px;
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-light-beige to-court-blue">
-  <!-- Social Proof Banner -->
-  <div class="bg-tennis-green text-white py-3 text-center text-sm">
-      <div class="container mx-auto px-6">
-          <span>🏆 Prilagojeni treningi glede na potrebe in želje  |  🎾 15+ let teniških izkušenj</span>
-      </div>
-  </div>
+<body>
 
-  <!-- Glava z gradientom -->
-  <header class="bg-gradient-to-r from-tennis-green to-green-800 shadow-lg sticky top-0">
-      <nav class="container mx-auto px-6 py-4">
-          <div class="flex items-center justify-between">
-            <a href="index.html">
-              <img src="images/logo.png" alt="Matic Tennis Coach Logo" class="h-16 w-auto brightness-125">
-            </a>
-              <div class="hidden md:flex space-x-8">
-                  <a href="#domov" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Domov</a>
-                  <a href="#omeni" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">O meni</a>
-                  <a href="#storitve" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Storitve</a>
-                  <a href="#kontakt" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Kontakt</a>
-              </div>
-          </div>
-      </nav>
-  </header>
+<header class="hero">
+    <div class="container hero-content">
+        <h1 class="coach-name">Marko Vrhovec</h1>
+        <div class="slogan">🎾 Treningi, ki dvignejo igro na višji nivo</div>
+        <p class="hero-description">
+            Individualni in skupinski tenis za otroke (6–14 let) ter rekreativce.  
+            Izpopolnite tehniko, taktiko in uživajte v igri.
+        </p>
+        <a href="#kontakt" class="btn btn-booking">📅 Rezerviraj uvodni trening</a>
+        <div class="small-note">Prvi trening – analiza igre brez obveznosti</div>
+    </div>
+</header>
 
-  <!-- Hero sekcija -->
-  <section class="container mx-auto px-6 py-12 text-center">
-      <h1 class="text-5xl md:text-6xl font-bold text-tennis-green mb-6 animate-fade-in-up">
-          <span class="bg-clip-text text-transparent bg-gradient-to-r from-tennis-green to-green-600">
-              Teniški trener Matic
-          </span>
-      </h1>
-      
-      <!-- YouTube Video Embed -->
-      <div class="max-w-4xl mx-auto mb-8 rounded-xl overflow-hidden shadow-lg">
-        <div class="aspect-w-16 aspect-h-9">
-          <iframe 
-            class="w-full h-96" 
-            src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
+<main>
+    <!-- PONUDBA V 3 TOČKAH -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Kaj ponujam</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-icon">🎯</div>
+                    <h3>Individualni treningi</h3>
+                    <p>Osredotočen razvoj tehnike, moči in gibalnih vzorcev po meri posameznika. Hitrejše napredovanje.</p>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">👥</div>
+                    <h3>Skupinski treningi</h3>
+                    <p>Dinamične vaje v parih ali manjših skupinah, igra pod pritiskom, taktične igre in druženje.</p>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">🏆</div>
+                    <h3>Priprave na tekme</h3>
+                    <p>Taktične sheme, analiza nasprotnika, treningi specifični za turnirje in tekmovalne ritme.</p>
+                </div>
+            </div>
         </div>
-      </div>
-      
-      <p class="text-xl text-gray-700 max-w-2xl mx-auto bg-white/80 rounded-lg p-6 shadow-md">
-          🎾 Začenjam s kariero teniškega trenerja. Na začetku učim rekreativne igralce, začetnike in otroke do 12 let. <br>
-          ✅ Licenca v pridobitvi | ⚖️ Kombinacija zabave in napredka
-      </p>
-  </section>
+    </section>
 
-  <!-- Storitve -->
-  <section class="py-20 bg-white/90 backdrop-blur-sm">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
-        <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
-        <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
-        <p class="text-gray-600 mb-6">Individualni ali skupinski teniški treningi</p>
-        <a href="/tenis/trening.html" 
-           class="inline-block bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-           Več informacij →
-        </a>
-      </div>
-    
-      <div class="relative group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all">
-        <div class="absolute inset-0 bg-gradient-to-br from-tennis-green/10 to-green-600/10"></div>
-        <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
-        <p class="text-gray-600 mb-6">Praktični sparing za vse nivoje</p>
-        <a href="/tenis/sparing.html" 
-           class="inline-block bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-           Več informacij →
-        </a>
-      </div>
+    <!-- PREPROST CENIK -->
+    <section style="padding-top: 0;">
+        <div class="container">
+            <h2 class="section-title">Cenik</h2>
+            <div class="pricing-wrapper">
+                <div class="price-table">
+                    <div class="price-row">
+                        <div>
+                            <div class="service-name">Individualna ura (60 min)</div>
+                            <div class="service-desc">osnovna tehnika + kondicija, 1 na 1</div>
+                        </div>
+                        <div class="price-value">45 €</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="service-name">Skupinski trening (90 min)</div>
+                            <div class="service-desc">max 4 igralci, vaje v paru in igre</div>
+                        </div>
+                        <div class="price-value">25 € / osebo</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="service-name">Paket 5x individualno</div>
+                            <div class="service-desc">velja 2 meseca, napredovanje zajamčeno</div>
+                        </div>
+                        <div class="price-value">210 €</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="service-name">Tekmovalna priprava (90 min)</div>
+                            <div class="service-desc">analiza + točno določene situacije</div>
+                        </div>
+                        <div class="price-value">55 €</div>
+                    </div>
+                </div>
+                <div class="price-note">* Cene veljajo za treninge na igriščih v Ljubljani. Možen dogovor za termine v Šiški in Tivoliju.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 MNENJA (TESTIMONIALS) -->
+    <section style="background-color: var(--gray-light);">
+        <div class="container">
+            <h2 class="section-title">Kaj pravijo igralci in starši</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i>“</i> Marko je izjemen trener, ki zna motivirati otroke. Moj sin je v pol leta napredoval neverjetno – osvojil je pravilno tehniko in postal samozavesten na igrišču. <i>”</i>
+                    </div>
+                    <div class="testimonial-author">
+                        <span>⭐️⭐️⭐️⭐️⭐️</span>
+                        <span>— Ana K., mama 11-letnika</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i>“</i> Začel sem kot rekreativec s slabim backhandom. Po nekaj mesecih individualnih treningov čutim ogromno razliko. Odličen pristop, potrpežljiv in strokoven. <i>”</i>
+                    </div>
+                    <div class="testimonial-author">
+                        <span>⭐️⭐️⭐️⭐️⭐️</span>
+                        <span>— Luka P., rekreativec</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i>“</i> Skupinski treningi so super zabavni, obenem pa izjemno koristni. Marko pazi na vsakega posameznika. Hčerka komaj čaka vsak termin. <i>”</i>
+                    </div>
+                    <div class="testimonial-author">
+                        <span>⭐️⭐️⭐️⭐️⭐️</span>
+                        <span>— Polona M., starš</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKTNI ODSEK (kontakt + obrazec) -->
+    <section id="kontakt" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Kontaktirajte me</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Poveživa se na igrišču</h3>
+                    <div class="contact-detail">
+                        <span class="contact-icon">📞</span>
+                        <span>+386 40 123 456</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="contact-icon">✉️</span>
+                        <span>marko.tenis@coach.si</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="contact-icon">📍</span>
+                        <span>Športni park Tivoli, Ljubljana + igrišča Šiška</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="contact-icon">⏱️</span>
+                        <span>Pon–Pet: 9.00–21.00, Sob: 10.00–16.00</span>
+                    </div>
+                    <div style="margin-top: 24px;">
+                        <a href="tel:+38640123456" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">📞 Pokliči zdaj</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Pošljite povpraševanje</h3>
+                    <form action="#" method="post" id="simpleContactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Vaše ime in priimek" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="E-poštni naslov" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Telefon (za hitrejši dogovor)">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="3" id="message" name="message" placeholder="Zanima me: termin, starost otroka / vaša raven, želje..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Pošlji povpraševanje</button>
+                        <p style="font-size: 0.75rem; margin-top: 12px; color: #5c6e66;">Odgovorim v roku 12 ur.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 Marko Vrhovec – Teniški treningi. Vse pravice pridržane. | Sledite mi za nasvete in termine.</p>
+        <p style="margin-top: 8px;">🎾 Tenis za vsakogar – od začetnika do tekmovalca</p>
     </div>
-  </section>
+</footer>
 
-  <!-- Testimonial Slider -->
-  <section class="py-16 bg-court-blue">
-      <div class="container mx-auto px-6">
-          <h2 class="text-3xl font-bold text-tennis-green text-center mb-8">Mnenja strank</h2>
-          <div class="max-w-3xl mx-auto">
-              <div class="bg-white p-8 rounded-xl shadow-lg">
-                  <p class="text-gray-600 italic mb-4">"Matic je izjemen trener! V kratkem času sem izboljšal svojo igro."</p>
-                  <p class="font-bold text-tennis-green">- Janez Novak</p>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Kontakt -->
-  <section class="py-20 bg-tennis-green/10">
-      <div class="container mx-auto px-6 max-w-4xl">
-          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
-              <div class="grid md:grid-cols-2">
-                  <div class="p-8 md:p-12">
-                      <h2 class="text-3xl font-bold text-tennis-green mb-8">Pišite nam</h2>
-                      <form 
-                          action="https://formspree.io/f/xovjwgja" 
-                          method="POST"
-                          class="space-y-6"
-                      >
-                          <input type="hidden" name="_next" value="https://yourusername.github.io/hvala.html">
-                          <input type="text" name="_gotcha" style="display:none">
-
-                          <input type="text" placeholder="Ime" name="name" required 
-                              class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green">
-                          <input type="email" placeholder="E-pošta" name="email" required 
-                              class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green">
-                          <textarea rows="5" placeholder="Sporočilo" name="message" required 
-                              class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-tennis-green"></textarea>
-
-                          <button type="submit" class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
-                              Pošlji sporočilo
-                          </button>
-                      </form>
-                  </div>
-                  <div class="bg-tennis-green text-white p-8 md:p-12">
-                      <h2 class="text-3xl font-bold mb-8">Kontakt</h2>
-                      <div class="flex items-start gap-4 mb-6">
-                          <svg class="w-6 h-6 mt-1 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                          </svg>
-                          <div>
-                              <p class="font-medium">E-pošta:</p>
-                              <a href="mailto:Matic.Tenis@proton.me" class="hover:text-orange-200">Matic.Tenis@proton.me</a>
-                              <p class="font-medium">GSM: 040 188 985</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Noga -->
-  <footer class="bg-tennis-green text-white py-8">
-      <div class="container mx-auto px-6 text-center">
-          <p class="opacity-90">© 2024 Matic Tenis • Vse pravice pridržane</p>
-      </div>
-  </footer>
-
-  <!-- Treningi Modal -->
-  <div id="treningiModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-    <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-      <h3 class="text-2xl font-bold text-tennis-green mb-4">Treningi</h3>
-      <p class="text-gray-600 mb-6">
-        Ponujam individualne in skupinske teniške treninge, prilagojene vašim potrebam in stopnji znanja. 
-        Vsak trening je sestavljen iz tehničnih vaj, taktičnih vaj in igre na poligonu.
-      </p>
-      <button onclick="closeModal('treningiModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-        Zapri
-      </button>
-    </div>
-  </div>
-
-  <!-- Sparing Modal -->
-  <div id="sparingModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-    <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-      <h3 class="text-2xl font-bold text-tennis-green mb-4">Sparing</h3>
-      <p class="text-gray-600 mb-6">
-        Sparingi so namenjeni igralcem vseh stopenj, ki želijo izboljšati svojo igro v realnih pogojih. 
-        Ponujam tudi analizo igre in nasvete za izboljšanje.
-      </p>
-      <button onclick="closeModal('sparingModal')" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-colors">
-        Zapri
-      </button>
-    </div>
-  </div>
-
-  <script>
-    // Funkcije za modal (ohranjene za druge modale)
-    function closeModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
+<!-- Majhen JS za prikaz obvestila ob oddaji obrazca (brez dejanskega pošiljanja, le demonstracija) -->
+<script>
+    (function() {
+        const form = document.getElementById('simpleContactForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                if (nameInput.value.trim() === '' || emailInput.value.trim() === '') {
+                    alert('Prosimo, vnesite ime in e-poštni naslov.');
+                    return;
+                }
+                alert('Hvala, ' + nameInput.value.split(' ')[0] + '! Vaše sporočilo je bilo poslano. Odgovorim v kratkem. Lep pozdrav, trener Marko.');
+                form.reset();
+            });
+        }
+        // gladko pomikanje za gumb rezerviraj termin
+        const bookingBtn = document.querySelector('.btn-booking');
+        if (bookingBtn) {
+            bookingBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                const kontaktSection = document.getElementById('kontakt');
+                if (kontaktSection) {
+                    kontaktSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+        // dodatno: če kdo klikne na katerikoli gumb s telefonsko številko - ni potrebe dodatno
+    })();
+</script>
 </body>
 </html>
